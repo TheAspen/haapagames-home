@@ -122,6 +122,52 @@
         font-family: "Teko", sans-serif;
         font-weight: 700;
       }
+      .cookie-consent-popup {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 600px;
+        background-color: rgba(33, 37, 41, 0.95);
+        border: 1px solid rgb(47, 255, 64);
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        display: none;
+      }
+
+      .cookie-content {
+        padding: 20px;
+      }
+
+      .cookie-options {
+        margin: 15px 0;
+      }
+
+      .cookie-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .cookie-buttons button {
+        flex: 1;
+        min-width: 120px;
+      }
+
+      .cookie-policy-link {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 576px) {
+        .cookie-buttons {
+          flex-direction: column;
+        }
+      }
     </style>
   </head>
   <body>
@@ -262,5 +308,132 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Check if user has already set cookie preferences
+        if (!localStorage.getItem("cookiePreferencesSet")) {
+          // Show the popup after a short delay
+          setTimeout(function () {
+            document.getElementById("cookieConsentPopup").style.display =
+              "block";
+          }, 1000);
+        }
+
+        // Handle "Accept All" button
+        document
+          .getElementById("acceptAllCookies")
+          .addEventListener("click", function () {
+            document.getElementById("analyticsCookies").checked = true;
+            document.getElementById("marketingCookies").checked = true;
+            savePreferences();
+          });
+
+        // Handle "Accept Selected" button
+        document
+          .getElementById("acceptSelectedCookies")
+          .addEventListener("click", function () {
+            savePreferences();
+          });
+
+        // Handle "Reject All" button
+        document
+          .getElementById("rejectAllCookies")
+          .addEventListener("click", function () {
+            document.getElementById("analyticsCookies").checked = false;
+            document.getElementById("marketingCookies").checked = false;
+            savePreferences();
+          });
+
+        function savePreferences() {
+          // Get preferences
+          const preferences = {
+            necessary: true, // Always required
+            analytics: document.getElementById("analyticsCookies").checked,
+            marketing: document.getElementById("marketingCookies").checked,
+          };
+
+          // Save to localStorage
+          localStorage.setItem(
+            "cookiePreferences",
+            JSON.stringify(preferences)
+          );
+          localStorage.setItem("cookiePreferencesSet", "true");
+
+          // Hide the popup
+          document.getElementById("cookieConsentPopup").style.display = "none";
+
+          // Here you would implement actual cookie management based on preferences
+          console.log("Cookie preferences saved:", preferences);
+        }
+      });
+    </script>
+
+    <div id="cookieConsentPopup" class="cookie-consent-popup">
+      <div class="cookie-content">
+        <h4 class="header-white">Cookie Preferences</h4>
+        <p class="main-text">
+          We use cookies to enhance your browsing experience, analyze site
+          traffic, and personalize content. Please choose your cookie
+          preferences:
+        </p>
+
+        <div class="cookie-options">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="necessaryCookies"
+              checked
+              disabled
+            />
+            <label class="form-check-label main-text" for="necessaryCookies">
+              Necessary Cookies <span class="text-muted">(Required)</span>
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="analyticsCookies"
+            />
+            <label class="form-check-label main-text" for="analyticsCookies">
+              Analytics Cookies
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="marketingCookies"
+            />
+            <label class="form-check-label main-text" for="marketingCookies">
+              Marketing Cookies
+            </label>
+          </div>
+        </div>
+
+        <div class="cookie-buttons">
+          <button
+            id="acceptSelectedCookies"
+            class="btn button-green border border-white"
+          >
+            Accept Selected
+          </button>
+          <button
+            id="acceptAllCookies"
+            class="btn button-green border border-white"
+          >
+            Accept All
+          </button>
+          <button id="rejectAllCookies" class="btn btn-outline-light">
+            Reject All
+          </button>
+        </div>
+
+        <p class="cookie-policy-link">
+          <a href="#" class="button-green">View Cookie Policy</a>
+        </p>
+      </div>
+    </div>
   </body>
 </html>
