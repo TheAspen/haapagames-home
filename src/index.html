@@ -71,6 +71,9 @@
       .content-wrap {
         flex: 1 0 auto;
       }
+      .container {
+        max-width: 1200px;
+      }
       .footer {
         flex-shrink: 0;
         /*background-color: rgb(61, 61, 61);*/
@@ -88,6 +91,10 @@
         border-bottom: 1px solid white;
         padding: 10px;
         background-color: #212529c0;
+      }
+      .nav-link {
+        font-size: small;
+        color: rgb(47, 255, 64) !important;
       }
       .navbar-nav .nav-link {
         color: rgb(47, 255, 64) !important;
@@ -175,7 +182,6 @@
       <div class="content-wrap">
         <nav class="navbar navbar-expand-lg header sticky-top py-1">
           <div class="container justify-content-between">
-            <!-- <h4 class="main-color">Haapa Games Oy</h4> -->
             <a href="">
               <img
                 src="images/haapagames-text-white.png"
@@ -215,11 +221,9 @@
 
             <div class="grid d-flex flex-column text-center gap-3">
               <h3 class="main-color">
-                We're a independent game studio making the games we've always
+                We're an independent game studio making the games we've always
                 wanted to play.
               </h3>
-              <!-- <h3 class="main-color">  Our current project is a fast-paced top-down shooter that focuses on smooth, satisfying gameplay.
-              </h3> -->
               <h3 class="main-color">
                 No fancy promises—just honest game development and a commitment
                 to creating something fun.
@@ -235,7 +239,7 @@
             <div class="container">
               <div class="ratio ratio-16x9">
                 <iframe
-                  src="https://www.youtube.com/embed/RxlY17MRfsg"
+                  src="https://www.youtube-nocookie.com/embed/qpbE6Zv80qs"
                   allowfullscreen
                 ></iframe>
               </div>
@@ -251,23 +255,25 @@
               Follow Our Development Journey
             </h3>
             <p class="main-text text-center mb-4">
-              Want to peek behind the curtain? Our development blog chronicles
-              our game-making adventure, from early prototypes to final polish.
-              We share our challenges, victories, and everything in between.
-              Join us as we document our journey in creating games we're
-              passionate about.
+              Want a peek behind the curtain? Our development blog takes you
+              inside our game-making adventure, from rough prototypes to final
+              polish. We share the real challenges, unexpected victories, and
+              everything in between. Join us as we document our journey creating
+              games we're truly passionate about.
             </p>
-            <a
-              href="https://www.theaspen.blog"
-              target="_blank"
-              class="btn btn-lg btn-block w-100 button-green border border-white"
-            >
-              Read Our Devlog
-            </a>
+            <div class="text-center">
+              <a
+                href="https://www.theaspen.blog"
+                target="_blank"
+                class="btn btn-lg button-green border border-white"
+              >
+                Read Our Devlog
+              </a>
+            </div>
           </section>
           <section id="contacts" class="section-fullscreen">
             <h1 class="header-white display-1 text-center mt-5">Contact</h1>
-            <p class="main-text text-center mt-3">info@haapagames.com</p>
+            <p class="main-text text-center mt-3">contact@haapagames.com</p>
           </section>
         </div>
       </div>
@@ -277,6 +283,7 @@
             <div class="col-md-4">
               <p class="mb-0">&copy; 2025 Haapa Games Oy</p>
               <p>3505474-6</p>
+              <a class="nav-link" href="privacy.html">Privacy policies</a>
             </div>
             <div class="col-md-4">
               <div class="navbar-nav d-flex flex-row justify-content-md-center">
@@ -288,17 +295,7 @@
                 <a class="nav-link" href="#contacts">Contact</a>
               </div>
             </div>
-            <div class="col-md-4 text-md-end">
-              <a href="#" class="button-green me-3 fs-3"
-                ><i class="bi bi-facebook"></i
-              ></a>
-              <a href="#" class="button-green me-3 fs-3"
-                ><i class="bi bi-twitter"></i
-              ></a>
-              <a href="#" class="button-green me-3 fs-3"
-                ><i class="bi bi-linkedin"></i
-              ></a>
-            </div>
+            <div class="col-md-4 text-md-end"></div>
           </div>
         </div>
       </footer>
